@@ -4,7 +4,11 @@ import org.junit.experimental.theories.ParameterSignature
 import org.junit.experimental.theories.ParameterSupplier
 import org.junit.experimental.theories.PotentialAssignment
 
-class BetweenSupplier : ParameterSupplier() {
+/**
+ * @see io.teoria.junit.numbers.Between
+ * @see org.junit.experimental.theories.ParameterSupplier
+ */
+internal class BetweenSupplier : ParameterSupplier() {
     @Throws(Throwable::class)
     override fun getValueSources(sig: ParameterSignature): List<PotentialAssignment> {
         val annotation: Between = sig.getAnnotation(Between::class.java)
