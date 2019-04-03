@@ -1,4 +1,4 @@
-package io.teoria.junit.numbers
+package io.artrev.teoria.numbers.ints
 
 import org.junit.experimental.theories.ParametersSuppliedBy
 
