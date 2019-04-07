@@ -18,6 +18,6 @@ internal class IntsBetweenSupplier : ParameterSupplier() {
     }
 
     companion object {
-        const val ASSIGNMENT_VALUE_NAME = "ints"
+        const val ASSIGNMENT_VALUE_NAME = "ints_between"
     }
 }

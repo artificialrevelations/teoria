@@ -23,11 +23,12 @@ internal class IntsAboveSupplier : ParameterSupplier() {
 
         return generateSequence { Random.nextInt(from, until) }
                 .distinct()
+                .take(above.limit)
                 .map { PotentialAssignment.forValue(ASSIGNMENT_VALUE_NAME, it) }
                 .toList()
     }
 
     companion object {
-        const val ASSIGNMENT_VALUE_NAME = "ints"
+        const val ASSIGNMENT_VALUE_NAME = "ints_above"
     }
 }
