@@ -27,23 +27,23 @@ Add `teoria` to the list of your test dependencies:
 
 ### Using teoria
 
-For now there are only three suppliers available: `Above`, `Below` and `Between`. You can write a test using them like this:
+For now there are only three suppliers available: `IntsAbove`, `IntsBelow` and `IntsBetween`. You can write a test using them like this:
 
 ```java
 @RunWith(Theories.class)
 public class FooTest {
     @Theory
-    public void a_theory_about_values_that_are_above(@Above(value = 42) final Integer value) {
+    public void a_theory_about_values_that_are_above(@IntsAbove(value = 42) final Integer value) {
         // test ...
     }
 
     @Theory
-    public void a_theory_about_values_that_are_below(@Below(value = 42) final Integer value) {
+    public void a_theory_about_values_that_are_below(@IntsBelow(value = 42) final Integer value) {
         // test ...
     }
     
     @Theory
-    public void a_theory_about_values_that_are_between(@Between(first = 1, last = 100) final Integer value) {
+    public void a_theory_about_values_that_are_between(@IntsBetween(first = 1, last = 100) final Integer value) {
         // test ...
     }
 }
