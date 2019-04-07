@@ -3,29 +3,32 @@ package io.artrev.teoria.numbers.ints
 import org.junit.experimental.theories.ParameterSignature
 import org.junit.experimental.theories.ParameterSupplier
 import org.junit.experimental.theories.PotentialAssignment
-import java.util.Random
-import java.util.stream.Collectors
+import kotlin.random.Random
 
 /**
  * @see io.teoria.junit.numbers.Above
  * @see org.junit.experimental.theories.ParameterSupplier
  */
-internal class AboveSupplier : ParameterSupplier() {
+internal class IntsAboveSupplier : ParameterSupplier() {
     @Throws(Throwable::class)
     override fun getValueSources(sig: ParameterSignature): List<PotentialAssignment> {
-        val above: Above = sig.getAnnotation(Above::class.java)
-        return Random().ints(above.limit.toLong(),
-                if (above.inclusive)
-                    above.value - 1
-                else
-                    above.value,
-                Int.MAX_VALUE)
-                .boxed()
+        val above: IntsAbove = sig.getAnnotation(IntsAbove::class.java)
+
+        val from = if (above.inclusive)
+            above.value - 1
+        else
+            above.value
+
+        val until = Int.MAX_VALUE
+
+        return generateSequence { Random.nextInt(from, until) }
+                .distinct()
+                .take(above.limit)
                 .map { PotentialAssignment.forValue(ASSIGNMENT_VALUE_NAME, it) }
-                .collect(Collectors.toList())
+                .toList()
     }
 
     companion object {
-        const val ASSIGNMENT_VALUE_NAME = "ints"
+        const val ASSIGNMENT_VALUE_NAME = "ints_above"
     }
 }
