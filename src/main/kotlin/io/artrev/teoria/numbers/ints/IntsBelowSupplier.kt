@@ -7,19 +7,21 @@ import java.util.Random
 import java.util.stream.Collectors
 
 /**
- * @see io.teoria.junit.numbers.Above
+ * @see io.teoria.junit.numbers.Below
  * @see org.junit.experimental.theories.ParameterSupplier
  */
-internal class AboveSupplier : ParameterSupplier() {
+internal class IntsBelowSupplier : ParameterSupplier() {
     @Throws(Throwable::class)
     override fun getValueSources(sig: ParameterSignature): List<PotentialAssignment> {
-        val above: Above = sig.getAnnotation(Above::class.java)
-        return Random().ints(above.limit.toLong(),
-                if (above.inclusive)
-                    above.value - 1
+        val below: IntsBelow = sig.getAnnotation(IntsBelow::class.java)
+        return Random().ints(
+                below.limit.toLong(),
+                Integer.MIN_VALUE,
+                if (below.inclusive)
+                    below.value + 1
                 else
-                    above.value,
-                Int.MAX_VALUE)
+                    below.value
+        )
                 .boxed()
                 .map { PotentialAssignment.forValue(ASSIGNMENT_VALUE_NAME, it) }
                 .collect(Collectors.toList())

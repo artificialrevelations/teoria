@@ -3,28 +3,18 @@ package io.artrev.teoria.numbers.ints
 import org.junit.experimental.theories.ParameterSignature
 import org.junit.experimental.theories.ParameterSupplier
 import org.junit.experimental.theories.PotentialAssignment
-import java.util.Random
-import java.util.stream.Collectors
 
 /**
- * @see io.teoria.junit.numbers.Below
+ * @see io.teoria.junit.numbers.Between
  * @see org.junit.experimental.theories.ParameterSupplier
  */
-internal class BelowSupplier : ParameterSupplier() {
+internal class IntsBetweenSupplier : ParameterSupplier() {
     @Throws(Throwable::class)
     override fun getValueSources(sig: ParameterSignature): List<PotentialAssignment> {
-        val below: Below = sig.getAnnotation(Below::class.java)
-        return Random().ints(
-                below.limit.toLong(),
-                Integer.MIN_VALUE,
-                if (below.inclusive)
-                    below.value + 1
-                else
-                    below.value
-        )
-                .boxed()
+        val annotation: IntsBetween = sig.getAnnotation(IntsBetween::class.java)
+
+        return (annotation.first..annotation.last)
                 .map { PotentialAssignment.forValue(ASSIGNMENT_VALUE_NAME, it) }
-                .collect(Collectors.toList())
     }
 
     companion object {

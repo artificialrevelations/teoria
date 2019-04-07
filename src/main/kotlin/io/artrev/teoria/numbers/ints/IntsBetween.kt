@@ -3,7 +3,7 @@ package io.artrev.teoria.numbers.ints
 import org.junit.experimental.theories.ParametersSuppliedBy
 
 /**
- * Annotating a [Theory] method int parameter with &#064;Between causes it to be
+ * Annotating a [Theory] method int parameter with &#064;IntsBetween causes it to be
  * supplied with values between the specified int values given when run as
  * a theory by the [Theories] runner.
  *
@@ -13,14 +13,14 @@ import org.junit.experimental.theories.ParametersSuppliedBy
  *
  * ```
  * @Theory
- * fun shouldPassForSomeInts(@Between(first = 1, last = 3) param: Int) {
+ * fun shouldPassForSomeInts(@IntsBetween(first = 1, last = 3) param: Int) {
  *     ...
  * }
  * ```
  */
 @Retention(AnnotationRetention.RUNTIME)
-@ParametersSuppliedBy(BetweenSupplier::class)
-annotation class Between(
+@ParametersSuppliedBy(IntsBetweenSupplier::class)
+annotation class IntsBetween(
         val first: Int,
         val last: Int
 )
