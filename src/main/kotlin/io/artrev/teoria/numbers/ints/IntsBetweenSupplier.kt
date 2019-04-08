@@ -5,7 +5,7 @@ import org.junit.experimental.theories.ParameterSupplier
 import org.junit.experimental.theories.PotentialAssignment
 
 /**
- * @see io.teoria.junit.numbers.Between
+ * @see io.artrev.teoria.numbers.ints.IntsBetween
  * @see org.junit.experimental.theories.ParameterSupplier
  */
 internal class IntsBetweenSupplier : ParameterSupplier() {
