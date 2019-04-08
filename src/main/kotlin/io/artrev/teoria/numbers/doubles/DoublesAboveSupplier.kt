@@ -1,4 +1,4 @@
-package io.artrev.teoria.numbers.ints
+package io.artrev.teoria.numbers.doubles
 
 import org.junit.experimental.theories.ParameterSignature
 import org.junit.experimental.theories.ParameterSupplier
@@ -6,22 +6,22 @@ import org.junit.experimental.theories.PotentialAssignment
 import kotlin.random.Random
 
 /**
- * @see io.artrev.teoria.numbers.ints.IntsAbove
+ * @see io.artrev.teoria.numbers.doubles.DoublesAbove
  * @see org.junit.experimental.theories.ParameterSupplier
  */
-internal class IntsAboveSupplier : ParameterSupplier() {
+internal class DoublesAboveSupplier : ParameterSupplier() {
     @Throws(Throwable::class)
     override fun getValueSources(sig: ParameterSignature): List<PotentialAssignment> {
-        val above: IntsAbove = sig.getAnnotation(IntsAbove::class.java)
+        val above: DoublesAbove = sig.getAnnotation(DoublesAbove::class.java)
 
         val from = if (above.inclusive)
-            above.value - 1
+            above.value - above.epsilon
         else
             above.value
 
-        val until = Int.MAX_VALUE
+        val until = Double.MAX_VALUE
 
-        return generateSequence { Random.nextInt(from, until) }
+        return generateSequence { Random.nextDouble(from, until) }
                 .distinct()
                 .take(above.limit)
                 .map { PotentialAssignment.forValue(ASSIGNMENT_VALUE_NAME, it) }
@@ -29,6 +29,6 @@ internal class IntsAboveSupplier : ParameterSupplier() {
     }
 
     companion object {
-        const val ASSIGNMENT_VALUE_NAME = "ints_above"
+        const val ASSIGNMENT_VALUE_NAME = "doubles_above"
     }
 }

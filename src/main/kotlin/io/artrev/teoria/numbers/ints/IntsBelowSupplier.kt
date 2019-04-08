@@ -6,7 +6,7 @@ import org.junit.experimental.theories.PotentialAssignment
 import kotlin.random.Random
 
 /**
- * @see io.teoria.junit.numbers.Below
+ * @see io.artrev.teoria.numbers.ints.IntsBelow
  * @see org.junit.experimental.theories.ParameterSupplier
  */
 internal class IntsBelowSupplier : ParameterSupplier() {
