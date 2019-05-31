@@ -3,7 +3,7 @@ package org.artrev.teoria.numbers.longs
 import org.junit.experimental.theories.ParametersSuppliedBy
 
 /**
- * Annotating a [Theory] method int parameter with &#064;LongsBelow causes it to
+ * Annotating a [Theory] method long parameter with &#064;LongsBelow causes it to
  * be supplied with values ending on the specified longs value given when run as
  * a theory by the [Theories] runner.
  *
