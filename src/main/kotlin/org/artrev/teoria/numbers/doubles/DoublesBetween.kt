@@ -13,7 +13,7 @@ import org.junit.experimental.theories.ParametersSuppliedBy
  *
  * ```
  * @Theory
- * fun shouldPassForSomeDoubles(@IntsBetween(first = 1.0, last = 3.0) param: Double) {
+ * fun shouldPassForSomeDoubles(@DoublesBetween(first = 1.0, last = 3.0) param: Double) {
  *     ...
  * }
  * ```
